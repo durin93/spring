@@ -60,7 +60,7 @@ public class BoardDAO{
 			stmt.setString(1, vo.getTitle());
 			stmt.setString(2, vo.getContent());
 			stmt.setInt(3, vo.getSeq());
-			stmt.executeQuery();
+			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
