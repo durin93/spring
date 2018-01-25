@@ -10,25 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Aspect
 public class AfterThrowingAdvice {
+	
 	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")
-	public void allPointCut(){}
+	public void allPointcut() {}
 	
-	
-	
-	@AfterThrowing(pointcut="allPointCut()", throwing="exceptObj")
-	public void exceptionLog(JoinPoint jp, Exception exceptObj){
-	
+	@AfterThrowing(pointcut="allPointcut()", throwing="thrownObj")
+	public void exceptionLog(JoinPoint jp, Exception thrownObj) {
 		String method = jp.getSignature().getName();
-	
-		System.out.println("[예외 처리] " + method + "() 메서드 수행 중 발생 된 예외 메세지 : "+ exceptObj.getMessage());
-		
-		if(exceptObj instanceof IllegalArgumentException){
-			System.out.println("부적합한 값이입력뎀");
-		}else if(exceptObj instanceof NumberFormatException){
-			System.out.println("숫자 형식의 값이 아닙니다");
-		}else if(exceptObj instanceof Exception){
-			System.out.println("문제가 발생하였습니다");
-		}
-		
+		System.out.println("[예외 처리] " + method + "() 메소드 중 발생된 예외 메시지: " + thrownObj.getMessage());
 	}
 }
